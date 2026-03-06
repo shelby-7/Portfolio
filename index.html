@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="THE_MASKEDGRAPHER — Creative portfolio for 3D animation, videography and photography." />
+  <title>THE_MASKEDGRAPHER — Creative Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Companies marquee — force horizontal centering */
+    .companies-track-wrap { display:flex !important; justify-content:center !important; overflow:hidden; position:relative; }
+    /* Software cards — small square thumbnails */
+    .sw-img { width:80px !important; height:80px !important; aspect-ratio:1/1; overflow:hidden; border-radius:12px; margin:0 auto 0.5rem; flex-shrink:0; }
+    .sw-img img { width:100%; height:100%; object-fit:cover; display:block; }
+    .sw-card { padding:1rem 0.75rem 1.25rem; align-items:center; }
+    /* Rounded edges on company logo images */
+    .company-logo img { border-radius:10px !important; }
+  </style>
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursor-follower"></div>
+
+  <!-- Noise overlay -->
+  <div class="noise-overlay"></div>
+
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-logo">
+      <span class="nav-logo-bracket">[</span>
+      <span class="nav-logo-text">THE<span class="accent">_</span>MASKEDGRAPHER</span>
+      <span class="nav-logo-bracket">]</span>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#work" class="nav-link">WORK</a></li>
+      <li><a href="#about" class="nav-link">ABOUT</a></li>
+      <li><a href="#services" class="nav-link">SERVICES</a></li>
+      <li><a href="#contact" class="nav-link nav-cta">CONTACT</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Hero Section (visible after loader exits) -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <img src="journey_sky.png" alt="Cyberpunk cityscape" class="hero-bg-img" />
+      <div class="hero-bg-overlay"></div>
+    </div>
+    <div class="scanlines"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-tag">
+        <span class="tag-line"></span>
+        <span class="tag-text">VISUAL ARTIST &amp; CREATIVE DIRECTOR</span>
+        <span class="tag-line"></span>
+      </div>
+      <h1 class="hero-title">
+        <span class="hero-title-line" data-text="CRAFTING">CRAFTING</span>
+        <span class="hero-title-line accent-line" data-text="WORLDS">WORLDS</span>
+        <span class="hero-title-line" data-text="FRAME BY FRAME">FRAME BY FRAME</span>
+      </h1>
+      <p class="hero-subtitle">3D Animation · Videography · Photography</p>
+      <div class="hero-actions">
+        <a href="#work" class="btn btn-primary">
+          <span class="btn-inner">VIEW WORK</span>
+          <span class="btn-glow"></span>
+        </a>
+        <a href="#contact" class="btn btn-ghost">GET IN TOUCH</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span class="scroll-text">SCROLL</span>
+    </div>
+    <div class="hero-corner hero-corner--tl"></div>
+    <div class="hero-corner hero-corner--tr"></div>
+    <div class="hero-corner hero-corner--bl"></div>
+    <div class="hero-corner hero-corner--br"></div>
+  </section>
+
+  <!-- Stats Bar -->
+  <div class="stats-bar reveal">
+    <div class="stats-bar-inner">
+      <div class="stat">
+        <span class="stat-number" data-target="50">0</span><span class="stat-plus">+</span>
+        <span class="stat-label">Projects Completed</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-number" data-target="6">0</span><span class="stat-plus">+</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-number" data-target="30">0</span><span class="stat-plus">+</span>
+        <span class="stat-label">Happy Clients</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-number" data-target="3">0</span>
+        <span class="stat-label">Creative Disciplines</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Work / Portfolio Section -->
+  <section class="work" id="work">
+    <div class="section-header reveal">
+      <div class="section-tag">
+        <span class="section-tag-line"></span>
+        <span>PORTFOLIO</span>
+        <span class="section-tag-line"></span>
+      </div>
+      <h2 class="section-title">SELECTED <span class="accent">WORK</span></h2>
+      <p class="section-sub">A curated selection of projects spanning animation, film, and still photography.</p>
+    </div>
+    <div class="filter-tabs reveal">
+      <button class="filter-btn active" data-filter="top" id="filter-top">TOP PICKS</button>
+      <button class="filter-btn" data-filter="animation" id="filter-animation">3D ANIMATION</button>
+      <button class="filter-btn" data-filter="video" id="filter-video">VIDEOGRAPHY</button>
+      <button class="filter-btn" data-filter="photo" id="filter-photo">PHOTOGRAPHY</button>
+    </div>
+    <div class="portfolio-grid" id="portfolio-grid">
+      <!-- TOP PICK 1 -->
+      <div class="portfolio-item" data-category="animation" data-top="true" id="item-1">
+        <div class="portfolio-item-inner">
+          <img src="portfolio/3D/THUMBNAILS/lighting setup porsche thumbnail.png" alt="Porsche Lighting Setup" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-meta">
+              <span class="portfolio-cat">3D ANIMATION</span>
+              <h3 class="portfolio-title">Porsche — Lighting Study</h3>
+              
+            </div>
+            <div class="portfolio-actions">
+              <a href="https://drive.google.com/file/d/1qGPiYbscsp1tSo7BQvgDt1l-oDG3dMof/view?usp=drive_link" target="_blank" class="portfolio-link" aria-label="View project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item-label">
+          <span class="portfolio-item-num">01</span>
+          <span class="portfolio-item-name">Porsche — Lighting Study</span>
+        </div>
+      </div>
+      <!-- TOP PICK 2 -->
+      <div class="portfolio-item" data-category="photo" data-top="true" id="item-2">
+        <div class="portfolio-item-inner">
+          <img src="portfolio/Featured/SnapInsta.to_459932746_892030812892902_4483273221669005930_n.jpg" alt="Automotive Photography" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-meta">
+              <span class="portfolio-cat">PHOTOGRAPHY</span>
+              <h3 class="portfolio-title">Through the Lens</h3>
+              
+            </div>
+            <div class="portfolio-actions">
+              <a href="#" class="portfolio-link" aria-label="View project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item-label">
+          <span class="portfolio-item-num">02</span>
+          <span class="portfolio-item-name">Through the Lens</span>
+        </div>
+      </div>
+      <!-- TOP PICK 3 -->
+      <div class="portfolio-item" data-category="video" data-top="true" id="item-3">
+        <div class="portfolio-item-inner">
+          <img src="portfolio/Videography/THUMBNAILS/TFDTC thumb.png" alt="TF DTC" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-meta">
+              <span class="portfolio-cat">VIDEOGRAPHY</span>
+              <h3 class="portfolio-title">TF DTC</h3>
+            </div>
+            <div class="portfolio-actions">
+              <a href="https://drive.google.com/file/d/1_NRg1bclsZ9Ol39inw2kUhCbEtIdXPCs/view?usp=drive_link" target="_blank" class="portfolio-link" aria-label="View project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item-label">
+          <span class="portfolio-item-num">03</span>
+          <span class="portfolio-item-name">TF DTC</span>
+        </div>
+      </div>
+      <!-- 3D ITEMS -->
+      <div class="portfolio-item" data-category="animation" id="item-4">
+        <div class="portfolio-item-inner">
+          <img src="portfolio/3D/THUMBNAILS/BMWs and R1s thumbnail.png" alt="BMWs and R1s" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-meta"><span class="portfolio-cat">3D ANIMATION</span><h3 class="portfolio-title">BMWs and R1s</h3></div>
+            <div class="portfolio-actions"><a href="https://drive.google.com/file/d/1PzANLTOJiqmh872DfuxZ1G3M5Bwa9SGJ/view?usp=drive_link" target="_blank" class="portfolio-link" aria-label="View project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+          </div>
+        </div>
+        <div class="portfolio-item-label"><span class="portfolio-item-num">04</span><span class="portfolio-item-name">BMWs and R1s</span></div>
+      </div>
+      <div class="portfolio-item" data-category="animation" id="item-5">
+        <div class="portfolio-item-inner">
+          <img src="portfolio/3D/THUMBNAILS/Ferrari Chandelier thumbnail.png" alt="Ferrari Chandelier" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-meta"><span class="portfolio-cat">3D ANIMATION</span><h3 class="portfolio-title">Ferrari Chandelier</h3></div>
+            <div class="portfolio-actions"><a href="https://drive.google.com/file/d/1DIwd845OkcfNsZMngDd6bvJOo2fpNGXC/view?usp=drive_link" target="_blank" class="portfolio-link" aria-label="View project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+          </div>
+        </div>
+        <div class="portfolio-item-label"><span class="portfolio-item-num">05</span><span class="portfolio-item-name">Ferrari Chandelier</span></div>
+      </div>
+      <div class="portfolio-item" data-category="animation" id="item-6">
+        <div class="portfolio-item-inner">
+          <img src="portfolio/3D/THUMBNAILS/AMG GT in space thumbnail.png" alt="AMG GT in Space" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-meta"><span class="portfolio-cat">3D ANIMATION</span><h3 class="portfolio-title">AMG GT in Space</h3></div>
+            <div class="portfolio-actions"><a href="https://drive.google.com/file/d/1PHqYnk1aBLmopdydRYfmnHVlwGbsmsqo/view?usp=drive_link" target="_blank" class="portfolio-link" aria-label="View project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+          </div>
+        </div>
+        <div class="portfolio-item-label"><span class="portfolio-item-num">06</span><span class="portfolio-item-name">AMG GT in Space</span></div>
+      </div>
+      <!-- 3D ITEM — Porsche Lighting Study -->
+      <div class="portfolio-item" data-category="animation" id="item-6b">
+        <div class="portfolio-item-inner">
+          <img src="portfolio/3D/THUMBNAILS/lighting setup porsche thumbnail.png" alt="Porsche Lighting Study" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-meta"><span class="portfolio-cat">3D ANIMATION</span><h3 class="portfolio-title">Porsche — Lighting Study</h3></div>
+            <div class="portfolio-actions"><a href="https://drive.google.com/file/d/1qGPiYbscsp1tSo7BQvgDt1l-oDG3dMof/view?usp=drive_link" target="_blank" class="portfolio-link" aria-label="View project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+          </div>
+        </div>
+        <div class="portfolio-item-label"><span class="portfolio-item-num">07</span><span class="portfolio-item-name">Porsche — Lighting Study</span></div>
+      </div>
+      <!-- 3D ITEM — Porsche in Feudal Japan -->
+      <div class="portfolio-item" data-category="animation" id="item-6c">
+        <div class="portfolio-item-inner">
+          <img src="portfolio/3D/THUMBNAILS/Porsche in feudal japan thumbnail.png" alt="Porsche in Feudal Japan" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-meta"><span class="portfolio-cat">3D ANIMATION</span><h3 class="portfolio-title">Porsche in Feudal Japan</h3></div>
+            <div class="portfolio-actions"><a href="https://drive.google.com/file/d/1g7gX8SDcuBI5plHAVhFXTO8MqX28EPtq/view?usp=drive_link" target="_blank" class="portfolio-link" aria-label="View project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+          </div>
+        </div>
+        <div class="portfolio-item-label"><span class="portfolio-item-num">08</span><span class="portfolio-item-name">Porsche in Feudal Japan</span></div>
+      </div>
+      <!-- VIDEOGRAPHY ITEMS -->
+      <div class="portfolio-item" data-category="video" id="item-7">
+        <div class="portfolio-item-inner">
+          <img src="portfolio/Videography/THUMBNAILS/Rang Reza Thumb.png" alt="Rang Reza" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-meta"><span class="portfolio-cat">VIDEOGRAPHY</span><h3 class="portfolio-title">Rang Reza</h3></div>
+            <div class="portfolio-actions"><a href="https://drive.google.com/file/d/1bVjbdVRKgwr_v-bDADGYQQUI1NABi8wB/view?usp=drive_link" target="_blank" class="portfolio-link" aria-label="View project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+          </div>
+        </div>
+        <div class="portfolio-item-label"><span class="portfolio-item-num">07</span><span class="portfolio-item-name">Rang Reza</span></div>
+      </div>
+      <div class="portfolio-item" data-category="video" id="item-8">
+        <div class="portfolio-item-inner">
+          <img src="portfolio/Videography/THUMBNAILS/Spiti Valley Thumb.png" alt="Spiti Valley" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-meta"><span class="portfolio-cat">VIDEOGRAPHY</span><h3 class="portfolio-title">Spiti Valley</h3></div>
+            <div class="portfolio-actions"><a href="https://drive.google.com/file/d/1BzPqwBdjLJdD97lZ1A254uzbWi77UvCB/view?usp=drive_link" target="_blank" class="portfolio-link" aria-label="View project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+          </div>
+        </div>
+        <div class="portfolio-item-label"><span class="portfolio-item-num">08</span><span class="portfolio-item-name">Spiti Valley</span></div>
+      </div>
+      <div class="portfolio-item" data-category="video" id="item-9">
+        <div class="portfolio-item-inner">
+          <img src="portfolio/Videography/THUMBNAILS/Ghar wapsi Thumb.png" alt="Ghar Wapsi" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-meta"><span class="portfolio-cat">VIDEOGRAPHY</span><h3 class="portfolio-title">Ghar Wapsi</h3></div>
+            <div class="portfolio-actions"><a href="https://drive.google.com/file/d/18A9X-b8dqtMpM9nE8tkmxAfPeSHxrHh8/view?usp=drive_link" target="_blank" class="portfolio-link" aria-label="View project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+          </div>
+        </div>
+        <div class="portfolio-item-label"><span class="portfolio-item-num">09</span><span class="portfolio-item-name">Ghar Wapsi</span></div>
+      </div>
+      <div class="portfolio-item" data-category="video" id="item-10">
+        <div class="portfolio-item-inner">
+          <img src="portfolio/Videography/THUMBNAILS/Frazer my hood thumb.png" alt="Frazer My Hood" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-meta"><span class="portfolio-cat">VIDEOGRAPHY</span><h3 class="portfolio-title">Frazer My Hood</h3></div>
+            <div class="portfolio-actions"><a href="https://drive.google.com/file/d/1juAk-J3AwURTAxde_og0APJ716WJU4Jv/view?usp=drive_link" target="_blank" class="portfolio-link" aria-label="View project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+          </div>
+        </div>
+        <div class="portfolio-item-label"><span class="portfolio-item-num">10</span><span class="portfolio-item-name">Frazer My Hood</span></div>
+      </div>
+      <div class="portfolio-item" data-category="video" id="item-11">
+        <div class="portfolio-item-inner">
+          <img src="portfolio/Videography/THUMBNAILS/TF 2025 thumbnail.png" alt="TF 2025" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-meta"><span class="portfolio-cat">VIDEOGRAPHY</span><h3 class="portfolio-title">TF 2025</h3></div>
+            <div class="portfolio-actions"><a href="https://drive.google.com/file/d/1vBYO8ogkizlZylSihYXr_NLj1o9uRX40/view?usp=drive_link" target="_blank" class="portfolio-link" aria-label="View project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+          </div>
+        </div>
+        <div class="portfolio-item-label"><span class="portfolio-item-num">11</span><span class="portfolio-item-name">TF 2025</span></div>
+      </div>
+      <div class="portfolio-item" data-category="video" id="item-12">
+        <div class="portfolio-item-inner">
+          <img src="portfolio/Videography/THUMBNAILS/Andar ki baat thumb.png" alt="Andar Ki Baat" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-meta"><span class="portfolio-cat">VIDEOGRAPHY</span><h3 class="portfolio-title">Andar Ki Baat</h3></div>
+            <div class="portfolio-actions"><a href="https://drive.google.com/file/d/1wFwSAOoqDVtyTTX_qGdq4srLmfC0koWC/view?usp=drive_link" target="_blank" class="portfolio-link" aria-label="View project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+          </div>
+        </div>
+        <div class="portfolio-item-label"><span class="portfolio-item-num">12</span><span class="portfolio-item-name">Andar Ki Baat</span></div>
+      </div>
+      <div class="portfolio-item" data-category="video" id="item-13">
+        <div class="portfolio-item-inner">
+          <img src="portfolio/Videography/THUMBNAILS/The color Violet thumb.png" alt="The Color Violet" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-meta"><span class="portfolio-cat">VIDEOGRAPHY</span><h3 class="portfolio-title">The Color Violet</h3></div>
+            <div class="portfolio-actions"><a href="https://drive.google.com/file/d/15sxpGEBOz0xmUENlr-V25yu92PodBOT5/view?usp=drive_link" target="_blank" class="portfolio-link" aria-label="View project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+          </div>
+        </div>
+        <div class="portfolio-item-label"><span class="portfolio-item-num">13</span><span class="portfolio-item-name">The Color Violet</span></div>
+      </div>
+      <div class="portfolio-item" data-category="video" id="item-14">
+        <div class="portfolio-item-inner">
+          <img src="portfolio/Videography/THUMBNAILS/Wassup Bhopal Thumb.png" alt="Wassup Bhopal" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-meta"><span class="portfolio-cat">VIDEOGRAPHY</span><h3 class="portfolio-title">Wassup Bhopal</h3></div>
+            <div class="portfolio-actions"><a href="https://drive.google.com/file/d/1EyaZfG4vG5wdzEW0SzrsuVy9GqXpWpyj/view?usp=drive_link" target="_blank" class="portfolio-link" aria-label="View project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+          </div>
+        </div>
+        <div class="portfolio-item-label"><span class="portfolio-item-num">14</span><span class="portfolio-item-name">Wassup Bhopal</span></div>
+      </div>
+      <div class="portfolio-item" data-category="video" id="item-15">
+        <div class="portfolio-item-inner">
+          <img src="portfolio/Videography/THUMBNAILS/32 Degree Rain Thumb.png" alt="32 Degree Rain" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-meta"><span class="portfolio-cat">VIDEOGRAPHY</span><h3 class="portfolio-title">32 Degree Rain</h3></div>
+            <div class="portfolio-actions"><a href="https://drive.google.com/file/d/1kQqyuWRhY1qweON38A1ci0OdwbQlHMef/view?usp=drive_link" target="_blank" class="portfolio-link" aria-label="View project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+          </div>
+        </div>
+        <div class="portfolio-item-label"><span class="portfolio-item-num">15</span><span class="portfolio-item-name">32 Degree Rain</span></div>
+      </div>
+      <div class="portfolio-item" data-category="video" id="item-16">
+        <div class="portfolio-item-inner">
+          <img src="portfolio/Videography/THUMBNAILS/32 Degree Thumb.png" alt="32 Degree" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-meta"><span class="portfolio-cat">VIDEOGRAPHY</span><h3 class="portfolio-title">32 Degree</h3></div>
+            <div class="portfolio-actions"><a href="https://drive.google.com/file/d/1y7lxxUkTiedZR72hr5ItoM9ksIXnaRXy/view?usp=drive_link" target="_blank" class="portfolio-link" aria-label="View project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+          </div>
+        </div>
+        <div class="portfolio-item-label"><span class="portfolio-item-num">16</span><span class="portfolio-item-name">32 Degree</span></div>
+      </div>
+      <div class="portfolio-item" data-category="video" id="item-17">
+        <div class="portfolio-item-inner">
+          <img src="portfolio/Videography/THUMBNAILS/Can i call you rose Thumb.png" alt="Can I Call You Rose" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-meta"><span class="portfolio-cat">VIDEOGRAPHY</span><h3 class="portfolio-title">Can I Call You Rose</h3></div>
+            <div class="portfolio-actions"><a href="https://drive.google.com/file/d/1qjQibQRemUlaBKmefsEibmfl0pnAlnSJ/view?usp=drive_link" target="_blank" class="portfolio-link" aria-label="View project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+          </div>
+        </div>
+        <div class="portfolio-item-label"><span class="portfolio-item-num">17</span><span class="portfolio-item-name">Can I Call You Rose</span></div>
+      </div>
+      <!-- PHOTOGRAPHY — Automotive (11) -->
+      <div class="portfolio-item" data-category="photo" id="p1"><div class="portfolio-item-inner"><img src="portfolio/Photography/automotive  photography/SnapInsta.to_335787693_202837765693563_471392279400092947_n.jpg" alt="Automotive" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Automotive</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">18</span><span class="portfolio-item-name">Automotive</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p2"><div class="portfolio-item-inner"><img src="portfolio/Photography/automotive  photography/SnapInsta.to_336050517_174959458676652_6123539032469486308_n.jpg" alt="Automotive" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Automotive</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">19</span><span class="portfolio-item-name">Automotive</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p3"><div class="portfolio-item-inner"><img src="portfolio/Photography/automotive  photography/SnapInsta.to_336280953_746788880309640_4159566410451426586_n.jpg" alt="Automotive" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Automotive</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">20</span><span class="portfolio-item-name">Automotive</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p4"><div class="portfolio-item-inner"><img src="portfolio/Photography/automotive  photography/SnapInsta.to_336330230_935950370920744_8590135614990470385_n.jpg" alt="Automotive" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Automotive</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">21</span><span class="portfolio-item-name">Automotive</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p5"><div class="portfolio-item-inner"><img src="portfolio/Photography/automotive  photography/SnapInsta.to_343741624_1316893772506633_1032925051677148407_n.jpg" alt="Automotive" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Automotive</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">22</span><span class="portfolio-item-name">Automotive</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p6"><div class="portfolio-item-inner"><img src="portfolio/Photography/automotive  photography/SnapInsta.to_343860075_1416026812547231_4468269309739710834_n.jpg" alt="Automotive" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Automotive</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">23</span><span class="portfolio-item-name">Automotive</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p7"><div class="portfolio-item-inner"><img src="portfolio/Photography/automotive  photography/SnapInsta.to_344589615_626801308967223_8593273505235751_n.jpg" alt="Automotive" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Automotive</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">24</span><span class="portfolio-item-name">Automotive</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p8"><div class="portfolio-item-inner"><img src="portfolio/Photography/automotive  photography/SnapInsta.to_344779841_6170349279714132_4604375907789235207_n.jpg" alt="Automotive" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Automotive</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">25</span><span class="portfolio-item-name">Automotive</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p9"><div class="portfolio-item-inner"><img src="portfolio/Photography/automotive  photography/SnapInsta.to_344804385_654628743173827_8910467983725906576_n.jpg" alt="Automotive" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Automotive</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">26</span><span class="portfolio-item-name">Automotive</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p10"><div class="portfolio-item-inner"><img src="portfolio/Photography/automotive  photography/SnapInsta.to_344870482_792036972539361_1047593988384022046_n.jpg" alt="Automotive" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Automotive</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">27</span><span class="portfolio-item-name">Automotive</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p11"><div class="portfolio-item-inner"><img src="portfolio/Photography/automotive  photography/SnapInsta.to_345242613_616048820423570_238197011359211742_n.jpg" alt="Automotive" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Automotive</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">28</span><span class="portfolio-item-name">Automotive</span></div></div>
+      <!-- PHOTOGRAPHY — Portraits & Stage (8) -->
+      <div class="portfolio-item" data-category="photo" id="p12"><div class="portfolio-item-inner"><img src="portfolio/Photography/Potraits and stage/SnapInsta.to_395916022_711579317125883_2985095287491391283_n.jpg" alt="Portrait" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Portrait</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">29</span><span class="portfolio-item-name">Portrait</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p13"><div class="portfolio-item-inner"><img src="portfolio/Photography/Potraits and stage/SnapInsta.to_396318131_346484367826680_246869361916785812_n.jpg" alt="Portrait" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Portrait</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">30</span><span class="portfolio-item-name">Portrait</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p14"><div class="portfolio-item-inner"><img src="portfolio/Photography/Potraits and stage/SnapInsta.to_396384664_861753935485422_1404752307768744371_n.jpg" alt="Portrait" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Portrait</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">31</span><span class="portfolio-item-name">Portrait</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p15"><div class="portfolio-item-inner"><img src="portfolio/Photography/Potraits and stage/SnapInsta.to_396389816_183733584784290_8579047917924791767_n.jpg" alt="Portrait" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Portrait</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">32</span><span class="portfolio-item-name">Portrait</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p16"><div class="portfolio-item-inner"><img src="portfolio/Photography/Potraits and stage/SnapInsta.to_396476119_343308621581118_5987569867851203218_n.jpg" alt="Portrait" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Portrait</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">33</span><span class="portfolio-item-name">Portrait</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p17"><div class="portfolio-item-inner"><img src="portfolio/Photography/Potraits and stage/SnapInsta.to_396578743_333273382721603_3488332053822150867_n.jpg" alt="Portrait" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Portrait</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">34</span><span class="portfolio-item-name">Portrait</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p18"><div class="portfolio-item-inner"><img src="portfolio/Photography/Potraits and stage/SnapInsta.to_396641819_249624868093589_316648531317039633_n.jpg" alt="Portrait" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Portrait</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">35</span><span class="portfolio-item-name">Portrait</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p19"><div class="portfolio-item-inner"><img src="portfolio/Photography/Potraits and stage/SnapInsta.to_396698302_365330589172225_4681696892318661200_n.jpg" alt="Portrait" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Portrait</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">36</span><span class="portfolio-item-name">Portrait</span></div></div>
+      <!-- PHOTOGRAPHY — Astrophotography (5) -->
+      <div class="portfolio-item" data-category="photo" id="p20"><div class="portfolio-item-inner"><img src="portfolio/Photography/Astrophotography/SnapInsta.to_503649476_18048609770528487_626166598731704077_n.jpg" alt="Astrophotography" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Astrophotography</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">37</span><span class="portfolio-item-name">Astrophotography</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p21"><div class="portfolio-item-inner"><img src="portfolio/Photography/Astrophotography/SnapInsta.to_503700112_18048609746528487_329272389449699912_n.jpg" alt="Astrophotography" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Astrophotography</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">38</span><span class="portfolio-item-name">Astrophotography</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p22"><div class="portfolio-item-inner"><img src="portfolio/Photography/Astrophotography/SnapInsta.to_503945116_18048609755528487_3447633845597728226_n.jpg" alt="Astrophotography" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Astrophotography</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">39</span><span class="portfolio-item-name">Astrophotography</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p23"><div class="portfolio-item-inner"><img src="portfolio/Photography/Astrophotography/SnapInsta.to_504451421_18048609728528487_5061095107201231423_n.jpg" alt="Astrophotography" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Astrophotography</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">40</span><span class="portfolio-item-name">Astrophotography</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p24"><div class="portfolio-item-inner"><img src="portfolio/Photography/Astrophotography/SnapInsta.to_504610739_18048609779528487_2291193782321277715_n.jpg" alt="Astrophotography" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Astrophotography</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">41</span><span class="portfolio-item-name">Astrophotography</span></div></div>
+      <!-- PHOTOGRAPHY — Nature & Misc (20) -->
+      <div class="portfolio-item" data-category="photo" id="p25"><div class="portfolio-item-inner"><img src="portfolio/Photography/Nature and miscellaneous/SnapInsta.to_459681599_758313106365191_560861100884135065_n.jpg" alt="Nature" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Nature</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">42</span><span class="portfolio-item-name">Nature</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p26"><div class="portfolio-item-inner"><img src="portfolio/Photography/Nature and miscellaneous/SnapInsta.to_459932746_892030812892902_4483273221669005930_n.jpg" alt="Nature" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Nature</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">43</span><span class="portfolio-item-name">Nature</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p27"><div class="portfolio-item-inner"><img src="portfolio/Photography/Nature and miscellaneous/SnapInsta.to_468330587_537358079105319_5331495476081709865_n.jpg" alt="Nature" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Nature</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">44</span><span class="portfolio-item-name">Nature</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p28"><div class="portfolio-item-inner"><img src="portfolio/Photography/Nature and miscellaneous/SnapInsta.to_468337923_881092727339680_7459637817180363798_n.jpg" alt="Nature" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Nature</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">45</span><span class="portfolio-item-name">Nature</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p29"><div class="portfolio-item-inner"><img src="portfolio/Photography/Nature and miscellaneous/SnapInsta.to_468564013_9321643637867669_4973278843859719304_n.jpg" alt="Nature" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Nature</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">46</span><span class="portfolio-item-name">Nature</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p30"><div class="portfolio-item-inner"><img src="portfolio/Photography/Nature and miscellaneous/SnapInsta.to_473807000_1353135579004471_6044277429074658360_n.jpg" alt="Nature" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Nature</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">47</span><span class="portfolio-item-name">Nature</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p31"><div class="portfolio-item-inner"><img src="portfolio/Photography/Nature and miscellaneous/SnapInsta.to_473893289_1271978217584939_1272898217584939_n.jpg" alt="Nature" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Nature</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">48</span><span class="portfolio-item-name">Nature</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p32"><div class="portfolio-item-inner"><img src="portfolio/Photography/Nature and miscellaneous/SnapInsta.to_503054895_18047950949528487_8347631704681076284_n.jpg" alt="Nature" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Nature</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">49</span><span class="portfolio-item-name">Nature</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p33"><div class="portfolio-item-inner"><img src="portfolio/Photography/Nature and miscellaneous/SnapInsta.to_503092747_18048115703528487_1199831102004380132_n.jpg" alt="Nature" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Nature</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">50</span><span class="portfolio-item-name">Nature</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p34"><div class="portfolio-item-inner"><img src="portfolio/Photography/Nature and miscellaneous/SnapInsta.to_503150946_18048115640528487_1531212841318095656_n.jpg" alt="Nature" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Nature</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">51</span><span class="portfolio-item-name">Nature</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p35"><div class="portfolio-item-inner"><img src="portfolio/Photography/Nature and miscellaneous/SnapInsta.to_503289243_18048115658528487_6193631256321226699_n.jpg" alt="Nature" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Nature</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">52</span><span class="portfolio-item-name">Nature</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p36"><div class="portfolio-item-inner"><img src="portfolio/Photography/Nature and miscellaneous/SnapInsta.to_503331748_18048115631528487_3527157983157857014_n.jpg" alt="Nature" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Nature</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">53</span><span class="portfolio-item-name">Nature</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p37"><div class="portfolio-item-inner"><img src="portfolio/Photography/Nature and miscellaneous/SnapInsta.to_503398447_18048377807528487_5940755025871143419_n.jpg" alt="Nature" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Nature</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">54</span><span class="portfolio-item-name">Nature</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p38"><div class="portfolio-item-inner"><img src="portfolio/Photography/Nature and miscellaneous/SnapInsta.to_503613092_18048115649528487_8165385400800654463_n.jpg" alt="Nature" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Nature</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">55</span><span class="portfolio-item-name">Nature</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p39"><div class="portfolio-item-inner"><img src="portfolio/Photography/Nature and miscellaneous/SnapInsta.to_503640408_18048382112528487_3435341416723314342_n.jpg" alt="Nature" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Nature</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">56</span><span class="portfolio-item-name">Nature</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p40"><div class="portfolio-item-inner"><img src="portfolio/Photography/Nature and miscellaneous/SnapInsta.to_503705979_18048115739528487_6047958637298424358_n.jpg" alt="Nature" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Nature</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">57</span><span class="portfolio-item-name">Nature</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p41"><div class="portfolio-item-inner"><img src="portfolio/Photography/Nature and miscellaneous/SnapInsta.to_503845320_18048377759528487_4028683928331240230_n.jpg" alt="Nature" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Nature</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">58</span><span class="portfolio-item-name">Nature</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p42"><div class="portfolio-item-inner"><img src="portfolio/Photography/Nature and miscellaneous/SnapInsta.to_504201680_18048382049528487_2218172971755889185_n.jpg" alt="Nature" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Nature</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">59</span><span class="portfolio-item-name">Nature</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p43"><div class="portfolio-item-inner"><img src="portfolio/Photography/Nature and miscellaneous/SnapInsta.to_513499497_18050793692528487_8090651028069495401_n.jpg" alt="Nature" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Nature</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">60</span><span class="portfolio-item-name">Nature</span></div></div>
+      <div class="portfolio-item" data-category="photo" id="p44"><div class="portfolio-item-inner"><img src="portfolio/Photography/Nature and miscellaneous/SnapInsta.to_513867230_18050793713528487_8562990806108417674_n.jpg" alt="Nature" loading="lazy" /><div class="portfolio-overlay"><div class="portfolio-meta"><span class="portfolio-cat">PHOTOGRAPHY</span><h3 class="portfolio-title">Nature</h3></div></div></div><div class="portfolio-item-label"><span class="portfolio-item-num">61</span><span class="portfolio-item-name">Nature</span></div></div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="about-inner">
+      <div class="about-image reveal">
+        <div class="about-img-wrapper">
+          <img src="ae3a278f-14d4-4546-9390-5f3add512258.jpg" alt="Creative Director — Cyberpunk portrait" />
+          <div class="about-img-glow"></div>
+          <div class="about-img-frame"></div>
+          <div class="about-data-line about-data-line--top"><span>SYS://ARTIST.PROFILE</span></div>
+          <div class="about-data-line about-data-line--bottom">
+            <span>STATUS: ACTIVE</span>
+            <span class="status-dot"></span>
+          </div>
+        </div>
+      </div>
+      <div class="about-content reveal">
+        <div class="section-tag">
+          <span class="section-tag-line"></span>
+          <span>ABOUT</span>
+          <span class="section-tag-line"></span>
+        </div>
+        <h2 class="section-title">THE ARTIST <span class="accent">BEHIND</span><br>THE LENS</h2>
+        <p class="about-text">I create at the intersection of art and technology — building visual worlds that feel both cinematic and deeply human. My work spans 3D animation, videography, and photography, united by a singular obsession: <em>making the extraordinary look inevitable</em>.</p>
+        <p class="about-text">Every frame is a decision. Every shadow, deliberate. Whether I'm sculpting a virtual landscape, chasing the perfect golden hour, or cutting a film to its emotional core — I'm always in pursuit of that moment when image becomes feeling.</p>
+        <div class="about-skills">
+          <div class="skill-item"><span class="skill-label">3D Animation &amp; Rendering</span><div class="skill-bar"><div class="skill-fill" data-width="40"></div></div></div>
+          <div class="skill-item"><span class="skill-label">Videography &amp; Cinematography</span><div class="skill-bar"><div class="skill-fill" data-width="85"></div></div></div>
+          <div class="skill-item"><span class="skill-label">Video Editing &amp; Color Grade</span><div class="skill-bar"><div class="skill-fill" data-width="92"></div></div></div>
+          <div class="skill-item"><span class="skill-label">Photography &amp; Photo Editing</span><div class="skill-bar"><div class="skill-fill" data-width="88"></div></div></div>
+        </div>
+        <div class="about-tools">
+          <span class="tool-tag">Blender</span><span class="tool-tag">Cinema 4D</span>
+          <span class="tool-tag">After Effects</span><span class="tool-tag">Premiere Pro</span>
+          <span class="tool-tag">Lightroom</span><span class="tool-tag">DaVinci Resolve</span>
+          <span class="tool-tag">Photoshop</span><span class="tool-tag">Unreal Engine</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <div class="section-header reveal">
+      <div class="section-tag">
+        <span class="section-tag-line"></span>
+        <span>SERVICES</span>
+        <span class="section-tag-line"></span>
+      </div>
+      <h2 class="section-title">WHAT I <span class="accent">DO</span></h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal" id="service-3d">
+        <div class="service-card-header">
+          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <span class="service-num">01</span>
+        </div>
+        <h3 class="service-title">3D Animation</h3>
+        <p class="service-desc">From concept to final render — cinematic 3D sequences, motion graphics, product visualizations, and immersive virtual environments built with precision and style.</p>
+        <ul class="service-list"><li>Cinematic 3D Sequences</li><li>Motion Graphics &amp; VFX</li><li>Product Visualization</li><li>Virtual Environment Design</li></ul>
+        <div class="service-card-glow"></div>
+      </div>
+      <div class="service-card reveal" id="service-video">
+        <div class="service-card-header">
+          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+          <span class="service-num">02</span>
+        </div>
+        <h3 class="service-title">Videography</h3>
+        <p class="service-desc">Professional video production and editing for brands, artists, and storytellers. From drone cinematography to intimate documentary-style shorts — every cut tells your story.</p>
+        <ul class="service-list"><li>Cinematic Filming</li><li>Aerial / Drone Footage</li><li>Film Editing &amp; Color Grade</li><li>Music Videos &amp; Short Films</li></ul>
+        <div class="service-card-glow"></div>
+      </div>
+      <div class="service-card reveal" id="service-photo">
+        <div class="service-card-header">
+          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+          <span class="service-num">03</span>
+        </div>
+        <h3 class="service-title">Photography</h3>
+        <p class="service-desc">Stills that breathe. Portraits, landscapes, events, and editorial — captured with intention and refined in post to deliver images that resonate long after the shutter closes.</p>
+        <ul class="service-list"><li>Portrait &amp; Editorial</li><li>Urban &amp; Landscape</li><li>Event Photography</li><li>Advanced Photo Retouching</li></ul>
+        <div class="service-card-glow"></div>
+      </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       COMPANIES WORKED WITH
+       ════════════════════════════════════════════════════════ -->
+  <section class="companies" id="companies">
+    <div class="section-header reveal">
+      <div class="section-tag">
+        <span class="section-tag-line"></span>
+        <span>CLIENTS</span>
+        <span class="section-tag-line"></span>
+      </div>
+      <h2 class="section-title">COMPANIES <span class="accent">WORKED WITH</span></h2>
+    </div>
+    <div class="companies-track-wrap reveal">
+      <div class="companies-track" style="display:flex;flex-direction:row;align-items:center;width:max-content;animation:marquee 28s linear infinite">
+        <!-- 6 real client logos — duplicated for infinite marquee -->
+        <div class="company-logo"><img src="portfolio/Companies worked with/DB.jpg" alt="DB" style="width:72px;height:48px;object-fit:contain;display:block;background:#fff;padding:4px;border-radius:6px" /><span class="co-name">DB</span></div>
+        <div class="company-logo"><img src="portfolio/Companies worked with/NMIMS.png" alt="NMIMS" style="width:72px;height:48px;object-fit:contain;display:block;background:#fff;padding:4px;border-radius:6px" /><span class="co-name">NMIMS</span></div>
+        <div class="company-logo"><img src="portfolio/Companies worked with/Tantrafiesta.png" alt="Tantrafiesta" style="width:72px;height:48px;object-fit:contain;display:block;background:#fff;padding:4px;border-radius:6px" /><span class="co-name">TANTRAFIESTA</span></div>
+        <div class="company-logo"><img src="portfolio/Companies worked with/WB.jpeg" alt="WB" style="width:72px;height:48px;object-fit:contain;display:block;background:#fff;padding:4px;border-radius:6px" /><span class="co-name">WB</span></div>
+        <div class="company-logo"><img src="portfolio/Companies worked with/crescent waterpark.jpg" alt="Crescent Waterpark" style="width:72px;height:48px;object-fit:contain;display:block;background:#fff;padding:4px;border-radius:6px" /><span class="co-name">CRESCENT</span></div>
+        <div class="company-logo"><img src="portfolio/Companies worked with/zoku.jpeg" alt="Zoku" style="width:72px;height:48px;object-fit:contain;display:block;background:#fff;padding:4px;border-radius:6px" /><span class="co-name">ZOKU</span></div>
+        <!-- Duplicate for seamless loop -->
+        <div class="company-logo" aria-hidden="true"><img src="portfolio/Companies worked with/DB.jpg" alt="" style="width:72px;height:48px;object-fit:contain;display:block;background:#fff;padding:4px;border-radius:6px" /><span class="co-name">DB</span></div>
+        <div class="company-logo" aria-hidden="true"><img src="portfolio/Companies worked with/NMIMS.png" alt="" style="width:72px;height:48px;object-fit:contain;display:block;background:#fff;padding:4px;border-radius:6px" /><span class="co-name">NMIMS</span></div>
+        <div class="company-logo" aria-hidden="true"><img src="portfolio/Companies worked with/Tantrafiesta.png" alt="" style="width:72px;height:48px;object-fit:contain;display:block;background:#fff;padding:4px;border-radius:6px" /><span class="co-name">TANTRAFIESTA</span></div>
+        <div class="company-logo" aria-hidden="true"><img src="portfolio/Companies worked with/WB.jpeg" alt="" style="width:72px;height:48px;object-fit:contain;display:block;background:#fff;padding:4px;border-radius:6px" /><span class="co-name">WB</span></div>
+        <div class="company-logo" aria-hidden="true"><img src="portfolio/Companies worked with/crescent waterpark.jpg" alt="" style="width:72px;height:48px;object-fit:contain;display:block;background:#fff;padding:4px;border-radius:6px" /><span class="co-name">CRESCENT</span></div>
+        <div class="company-logo" aria-hidden="true"><img src="portfolio/Companies worked with/zoku.jpeg" alt="" style="width:72px;height:48px;object-fit:contain;display:block;background:#fff;padding:4px;border-radius:6px" /><span class="co-name">ZOKU</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       SOFTWARE USED
+       ════════════════════════════════════════════════════════ -->
+  <section class="software" id="software">
+    <div class="section-header reveal">
+      <div class="section-tag">
+        <span class="section-tag-line"></span>
+        <span>TOOLKIT</span>
+        <span class="section-tag-line"></span>
+      </div>
+      <h2 class="section-title">SOFTWARE <span class="accent">USED</span></h2>
+      <p class="section-sub">The tools behind every frame.</p>
+    </div>
+    <div class="software-grid reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:820px;margin:0 auto">
+      <!-- 6 software cards -->
+      <div class="sw-card">
+        <div class="sw-img"><img src="sw_blender.png" alt="Blender" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
+        <span class="sw-name">Blender</span>
+        <span class="sw-cat">3D / VFX</span>
+      </div>
+      <div class="sw-card">
+        <div class="sw-img"><img src="sw_aftereffects.png" alt="After Effects" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
+        <span class="sw-name">After Effects</span>
+        <span class="sw-cat">MOTION / VFX</span>
+      </div>
+      <div class="sw-card">
+        <div class="sw-img"><img src="sw_illustrator.png" alt="Adobe Illustrator" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
+        <span class="sw-name">Illustrator</span>
+        <span class="sw-cat">DESIGN / VECTOR</span>
+      </div>
+      <div class="sw-card">
+        <div class="sw-img" style="padding:10px;box-sizing:border-box;background:#1a1a1a"><img src="sw_davinci.png" alt="DaVinci Resolve" style="width:100%;height:100%;object-fit:contain;display:block" /></div>
+        <span class="sw-name">DaVinci Resolve</span>
+        <span class="sw-cat">COLOR / EDIT</span>
+      </div>
+      <div class="sw-card">
+        <div class="sw-img"><img src="sw_lightroom.png" alt="Lightroom" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
+        <span class="sw-name">Lightroom</span>
+        <span class="sw-cat">PHOTO EDIT</span>
+      </div>
+      <div class="sw-card">
+        <div class="sw-img"><img src="sw_photoshop.png" alt="Photoshop" style="width:100%;height:100%;object-fit:cover;display:block" /></div>
+        <span class="sw-name">Photoshop</span>
+        <span class="sw-cat">PHOTO / DESIGN</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div class="contact-content reveal">
+        <div class="section-tag">
+          <span class="section-tag-line"></span>
+          <span>CONTACT</span>
+          <span class="section-tag-line"></span>
+        </div>
+        <h2 class="section-title">LET'S BUILD<br>SOMETHING <span class="accent">REAL</span></h2>
+        <p class="contact-text">Have a project in mind? Whether it's a 3D campaign, a film, or a photo series — let's talk about bringing your vision to life.</p>
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <span class="contact-info-label">SYS://EMAIL</span>
+            <a href="mailto:adityabagde36694@gmail.com" class="contact-info-value">adityabagde36694@gmail.com</a>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">SYS://LOCATION</span>
+            <span class="contact-info-value">Available Worldwide</span>
+          </div>
+        </div>
+        <div class="contact-socials">
+          <a href="https://www.instagram.com/the_maskedgrapher/" target="_blank" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="https://www.youtube.com/@saturdaymorninghouse" target="_blank" class="social-link" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+        </div>
+      </div>
+      <form class="contact-form reveal" id="contact-form" novalidate>
+        <div class="form-group"><label for="name" class="form-label">YOUR NAME</label><input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required /><span class="form-line"></span></div>
+        <div class="form-group"><label for="email" class="form-label">EMAIL ADDRESS</label><input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required /><span class="form-line"></span></div>
+        <div class="form-group">
+          <label for="service" class="form-label">PROJECT TYPE</label>
+          <select id="service" name="service" class="form-input form-select">
+            <option value="">Select a service...</option>
+            <option value="animation">3D Animation</option>
+            <option value="video">Videography / Video Editing</option>
+            <option value="photo">Photography / Photo Editing</option>
+            <option value="other">Other</option>
+          </select>
+          <span class="form-line"></span>
+        </div>
+        <div class="form-group"><label for="message" class="form-label">YOUR MESSAGE</label><textarea id="message" name="message" class="form-input form-textarea" placeholder="Tell me about your project..." required></textarea><span class="form-line"></span></div>
+        <button type="submit" class="btn btn-primary form-submit" id="submit-btn">
+          <span class="btn-inner">SEND MESSAGE</span>
+          <span class="btn-glow"></span>
+        </button>
+        <div class="form-success" id="form-success">
+          <span class="success-icon">&#10003;</span>
+          MESSAGE TRANSMITTED SUCCESSFULLY
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <span class="nav-logo-bracket">[</span>
+        <span class="nav-logo-text">THE<span class="accent">_</span>MASKEDGRAPHER</span>
+        <span class="nav-logo-bracket">]</span>
+      </div>
+      <p class="footer-copy">&copy; 2026 THE_MASKEDGRAPHER. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-scanlines"></div>
+  </footer>
+
+  <!-- Photo Lightbox -->
+  <div id="photo-lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">&#10005;</button>
+    <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous photo">&#8592;</button>
+    <button class="lightbox-next" id="lightbox-next" aria-label="Next photo">&#8594;</button>
+    <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="" />
+    </div>
+    <div class="lightbox-counter" id="lightbox-counter"></div>
+  </div>
+
+  <script src="main.js"></script>
+
+</body>
+</html>
