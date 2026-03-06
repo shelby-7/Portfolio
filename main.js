@@ -513,17 +513,17 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
    CONTACT FORM — Formspree submission
    ═══════════════════════════════════════════════════════════ */
 (function () {
-  const form       = document.getElementById('contact-form');
-  const submitBtn  = document.getElementById('submit-btn');
-  const successEl  = document.getElementById('form-success');
+  const form = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const successEl = document.getElementById('form-success');
   if (!form) return;
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
 
     // Basic validation
-    const name    = form.querySelector('#name').value.trim();
-    const email   = form.querySelector('#email').value.trim();
+    const name = form.querySelector('#name').value.trim();
+    const email = form.querySelector('#email').value.trim();
     const message = form.querySelector('#message').value.trim();
     if (!name || !email || !message) return;
 
@@ -532,10 +532,12 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     submitBtn.querySelector('.btn-inner').textContent = 'TRANSMITTING...';
 
     try {
-      const res = await fetch('https://formspree.io/f/adityabagde36694@gmail.com', {
+      const formData = new FormData(form);
+      formData.append('access_key', 'c8452621-daee-43e9-8b3d-e10098376fad');
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Accept': 'application/json' },
-        body: new FormData(form)
+        body: formData
       });
 
       if (res.ok) {
