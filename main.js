@@ -509,3 +509,59 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   lbImg.style.transition = 'opacity 0.15s ease';
 })();
 
+/* ═══════════════════════════════════════════════════════════
+   CONTACT FORM — Formspree submission
+   ═══════════════════════════════════════════════════════════ */
+(function () {
+  const form       = document.getElementById('contact-form');
+  const submitBtn  = document.getElementById('submit-btn');
+  const successEl  = document.getElementById('form-success');
+  if (!form) return;
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    // Basic validation
+    const name    = form.querySelector('#name').value.trim();
+    const email   = form.querySelector('#email').value.trim();
+    const message = form.querySelector('#message').value.trim();
+    if (!name || !email || !message) return;
+
+    // Button loading state
+    submitBtn.disabled = true;
+    submitBtn.querySelector('.btn-inner').textContent = 'TRANSMITTING...';
+
+    try {
+      const res = await fetch('https://formspree.io/f/adityabagde36694@gmail.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+
+      if (res.ok) {
+        // Show success, hide form fields
+        form.querySelectorAll('.form-group').forEach(g => g.style.display = 'none');
+        submitBtn.style.display = 'none';
+        if (successEl) {
+          successEl.style.display = 'flex';
+          successEl.style.opacity = '1';
+        }
+        form.reset();
+      } else {
+        const data = await res.json();
+        const errMsg = (data.errors || []).map(e => e.message).join(', ') || 'Submission failed. Try again.';
+        submitBtn.querySelector('.btn-inner').textContent = errMsg;
+        setTimeout(() => {
+          submitBtn.querySelector('.btn-inner').textContent = 'SEND MESSAGE';
+          submitBtn.disabled = false;
+        }, 3000);
+      }
+    } catch {
+      submitBtn.querySelector('.btn-inner').textContent = 'CONNECTION ERROR — RETRY';
+      setTimeout(() => {
+        submitBtn.querySelector('.btn-inner').textContent = 'SEND MESSAGE';
+        submitBtn.disabled = false;
+      }, 3000);
+    }
+  });
+})();
