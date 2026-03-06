@@ -2,4 +2,9 @@ node_modules/
 .DS_Store
 Thumbs.db
 *.log
-portfolio/
+
+# Exclude raw video files - these are served via Google Drive links
+*.mp4
+*.mov
+*.avi
+*.mkv
